@@ -9,23 +9,31 @@
  * file that was distributed with this source code.
  */
 
- 
-class TestHTML extends PHPUnit_Framework_TestCase 
+
+class TestHTML extends PHPUnit_Framework_TestCase
 {
+	private $i18n      = 'Iñtërnâtiônàlizætiøn';
+	private $entities  = "I&ntilde;t&euml;rn&acirc;ti&ocirc;n&agrave;liz&aelig;ti&oslash;n";
+	private $html1     = '';
 
-	var $html1 = '<html>
-    <head>
-        <title>Example</title>
-    </head>
-    <body>
-        <h1>Example Title</h1>
-        <hr>
-        <p>A paragraph</p>
-    </body>
+	function setup() {
+		$this->html1 = <<<EOS
+<html>
+	<head>
+		<title>Example</title>
+	</head>
+	<body>
+		<h1>Example Title</h1>
+		<hr>
+		<p>A paragraph</p>
+		<p id="utf8">{$this->i18n}</p>
+		<p id="entities">{$this->entities}</p>
+	</body>
 </html>
-';
+EOS;
+	}
 
-    function testHTMLBasics() 
+    function testHTMLBasics()
     {
         $doctype = \arc\html::doctype();
         $this->assertEquals( (string) $doctype, '<!doctype html>' );
@@ -33,7 +41,7 @@ class TestHTML extends PHPUnit_Framework_TestCase
         $this->assertEquals( (string) $comment, '<!-- A comment -->' );
     }
 
-    function testHTMLWriter() 
+    function testHTMLWriter()
     {
         $html = \arc\html::ul( [ 'class' => 'menu' ],
             \arc\html::li('menu 1 ',
@@ -41,14 +49,14 @@ class TestHTML extends PHPUnit_Framework_TestCase
             )
             ->li('menu 2')
         );
-        $this->assertEquals( 
+        $this->assertEquals(
             "<ul class=\"menu\">\r\n\t<li>\r\n\t\tmenu 1 <input type=\"radio\" checked>\r\n\t</li>"
             ."\r\n\t<li>menu 2</li>\r\n</ul>",
             ''.$html
         );
     }
 
-    function testHTMLParsing() 
+    function testHTMLParsing()
     {
         $html = \arc\html::parse( $this->html1 );
         $error = null;
@@ -60,7 +68,7 @@ class TestHTML extends PHPUnit_Framework_TestCase
         $this->assertTrue( $html->head->title->nodeValue == 'Example' );
     }
 
-    function testHTMLFind() 
+    function testHTMLFind()
     {
         $html = \arc\html::parse( $this->html1 );
         $title = $html->find('head title')[0];
@@ -73,5 +81,17 @@ class TestHTML extends PHPUnit_Framework_TestCase
         $title = $html->getElementsByTagName('title')[0];
         $this->assertEquals( $title->nodeValue, 'Example' );
     }
+
+	function testEncoding() {
+		$html = \arc\html::parse( $this->html1, 'UTF-8' );
+		$elm = $html->find('#utf8')[0];
+		$this->assertEquals($this->i18n, $elm->nodeValue );
+	}
+
+	function testEntities() {
+		$html = \arc\html::parse( $this->html1, 'UTF-8' );
+		$elm = $html->find('#entities')[0];
+		$this->assertEquals($this->entities, $elm->nodeValue );
+	}
 
 }
