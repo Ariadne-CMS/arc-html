@@ -45,12 +45,16 @@ class Parser
         return $result;
     }
 
-    private function parseFull( $html )
+    private function parseFull( $html, $encoding = 'UTF-8')
     {
         $dom = new \DomDocument('1.0', $encoding);
         $prefix = '';
         if ( isset($encoding) ) {
-            $prefix  = "<head id='ar_html_parser_encoding_header'><meta charset='$encoding'></head>";
+            $prefix  = <<<EOS
+<head id='ar_html_parser_encoding_header'>
+<meta http-equiv="content-type" content="text/html; charset=$encoding">
+</head>
+EOS;
         }
         libxml_disable_entity_loader(); // prevents XXE attacks
         $prevErrorSetting = libxml_use_internal_errors(true);
