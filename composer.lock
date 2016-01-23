@@ -97,16 +97,16 @@
         },
         {
             "name": "arc/xml",
-            "version": "2.0",
+            "version": "2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ariadne-CMS/arc-xml.git",
-                "reference": "c812d09ca05a2d9dc2e0d3d6de218ba3b3e48665"
+                "reference": "2edd850288e2787096a594c90a1519966a9f31e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ariadne-CMS/arc-xml/zipball/c812d09ca05a2d9dc2e0d3d6de218ba3b3e48665",
-                "reference": "c812d09ca05a2d9dc2e0d3d6de218ba3b3e48665",
+                "url": "https://api.github.com/repos/Ariadne-CMS/arc-xml/zipball/2edd850288e2787096a594c90a1519966a9f31e1",
+                "reference": "2edd850288e2787096a594c90a1519966a9f31e1",
                 "shasum": ""
             },
             "require": {
@@ -138,7 +138,7 @@
                 "component",
                 "components"
             ],
-            "time": "2016-01-17 16:26:23"
+            "time": "2016-01-23 21:32:40"
         }
     ],
     "packages-dev": [

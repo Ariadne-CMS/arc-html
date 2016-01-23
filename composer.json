@@ -13,7 +13,7 @@
 	],
 	"require": {
 		"php": ">=5.4",
-		"arc/xml": "~2.0",
+		"arc/xml": "~2.1",
 		"arc/prototype": "~0.9.1"
 	},
 	"autoload": {
