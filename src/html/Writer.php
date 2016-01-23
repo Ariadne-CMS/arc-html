@@ -48,8 +48,8 @@ class Writer {
         } else if (is_numeric( $name )) {
             return ' ' . self::name( $value );
         } else {
-              return \arc\xml::attribute( $name, $value );
-          }
+            return \arc\xml::attribute( $name, $value );
+        }
     }
 
     static public function comment( $content )
