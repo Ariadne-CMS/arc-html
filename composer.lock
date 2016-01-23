@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f64cd762fe5445fd395c64e034a556df",
-    "content-hash": "c150d0b02a9424d64835660818af8e8f",
+    "hash": "651f9e76a5bafa547d29095ca520f334",
+    "content-hash": "9b3272e94c9f9f484e5f6ed2ede10d3b",
     "packages": [
         {
             "name": "arc/base",
@@ -47,53 +47,6 @@
                 "components"
             ],
             "time": "2015-12-18 13:33:23"
-        },
-        {
-            "name": "arc/prototype",
-            "version": "0.9.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Ariadne-CMS/arc-prototype.git",
-                "reference": "060a1c0a42b024b036759e50e03d5bf7f00f7861"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Ariadne-CMS/arc-prototype/zipball/060a1c0a42b024b036759e50e03d5bf7f00f7861",
-                "reference": "060a1c0a42b024b036759e50e03d5bf7f00f7861",
-                "shasum": ""
-            },
-            "require": {
-                "arc/base": ">=2.0",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "5.1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "arc\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Auke van Slooten",
-                    "email": "auke@muze.nl"
-                }
-            ],
-            "description": "ARC: prototypical inheritance component",
-            "homepage": "https://github.com/Ariadne-CMS/arc/wiki",
-            "keywords": [
-                "arc",
-                "component",
-                "components",
-                "prototype"
-            ],
-            "time": "2016-01-17 15:50:55"
         },
         {
             "name": "arc/xml",
