@@ -120,3 +120,17 @@ EOF;
 ```
 
 And when you convert the html back to a string, it will still be a partial HTML fragment.
+
+
+Why use this instead of DOMDocument or SimpleXML?
+-------------------------------------------------
+
+arc\html::parse has the following differences:
+
+  - When converted to string, it returns the original HTML, without additions you didn't make.
+  - You can use it with partial HTML fragments.
+  - No need to remember calling importNode() before appendChild() or insertBefore()
+  - No need to switch between SimpleXML and DOMDocument, because you need that one method only available in the other API.
+  - When returning a list of elements, you always get a simple Array, not a magic NodeList.
+
+In addition arc\html doubles as a simple way to generate valid and indented HTML, with readable and self-validating code.
