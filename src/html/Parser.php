@@ -59,7 +59,7 @@ class Parser
 
     private function insertEncoding($html, $encoding)
     {
-        $meta = '<meta id="ArcTempEncoding" charset="'.htmlspecialchars($encoding).'">';
+        $meta = '<meta id="ArcTempEncoding" http-equiv="content-type" content="text/html; charset="'.  htmlspecialchars($encoding) .'">';
         if ( preg_match('/<head([^>]*)>/i', $html) ) {
             $html = preg_replace('/<head([^>]*)>/i', '<head\\1>'.$meta, $html);
         } else if ( preg_match('/<body([^>]*)>/i') ) {
