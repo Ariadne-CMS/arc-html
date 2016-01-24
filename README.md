@@ -42,7 +42,7 @@ CSS selectors
 -------------
 
 ```php5
-	$title = current($xml->find('title'));
+	$title = current($html->find('title'));
 ```
 
 The find() method always returns an array, which may be empty. By using current() you get the first element found, or null if nothing was found.
