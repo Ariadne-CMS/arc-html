@@ -28,9 +28,9 @@ class TestHTML extends PHPUnit_Framework_TestCase
     function testHTMLBasics()
     {
         $doctype = \arc\html::doctype();
-        $this->assertEquals( (string) $doctype, '<!doctype html>' );
+        $this->assertEquals( '<!doctype html>', (string) $doctype );
         $comment = \arc\html::comment('A comment');
-        $this->assertEquals( (string) $comment, '<!-- A comment -->' );
+        $this->assertEquals( '<!-- A comment -->', (string) $comment );
     }
 
     function testHTMLWriter()
@@ -54,24 +54,24 @@ class TestHTML extends PHPUnit_Framework_TestCase
         $error = null;
         $htmlString = ''.$html;
         $html2 = \arc\html::parse( $htmlString );
-        $this->assertEquals( $html->head->title, '<title>Example</title>' );
-        $this->assertTrue( $html->head->title->nodeValue == 'Example' );
-        $this->assertEquals( $html->head->title.'', $html2->head->title.'' );
-        $this->assertTrue( $html->head->title->nodeValue == 'Example' );
+        $this->assertEquals( '<title>Example</title>', $html->head->title );
+        $this->assertEquals( 'Example', (string) $html->head->title->nodeValue );
+        $this->assertEquals( (string) $html->head->title, (string) $html2->head->title );
+        $this->assertEquals( 'Example', (string) $html->head->title->nodeValue );
     }
 
     function testHTMLFind()
     {
         $html = \arc\html::parse( $this->html1 );
         $title = $html->find('head title')[0];
-        $this->assertEquals( $title->nodeValue, 'Example' );
+        $this->assertEquals( 'Example', $title->nodeValue );
     }
 
     function testDomMethods()
     {
         $html = \arc\html::parse( $this->html1 );
         $title = $html->getElementsByTagName('title')[0];
-        $this->assertEquals( $title->nodeValue, 'Example' );
+        $this->assertEquals( 'Example', $title->nodeValue );
     }
 
     function testEncoding()
