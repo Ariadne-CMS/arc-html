@@ -17,7 +17,7 @@ class NodeList extends \ArrayObject {
     }
 
     protected function element( $tagName, $attributes, $content ) {
-        $tagName =  $this->writer->name( $tagName );
+        $tagName =  \arc\html::name( $tagName );
         $el = '<' . $tagName;
         $el .= $this->getAttributes( $attributes );
         if ( $this->canHaveContent( $tagName ) ) {
@@ -27,6 +27,17 @@ class NodeList extends \ArrayObject {
             $el .= '>';
         }
         return $el;
+    }
+
+    protected function getAttributes( $attributes ) 
+    {
+        $result = '';
+        if (count( $attributes )) {
+            foreach ($attributes as $name => $value ) {
+                $result .= \arc\html::attribute( $name, $value );
+            }
+        }
+        return $result;
     }
 
     protected function parseArgs( $args ) {
