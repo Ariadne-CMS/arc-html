@@ -74,4 +74,13 @@ class TestHTML extends PHPUnit_Framework_TestCase
         $this->assertEquals( $title->nodeValue, 'Example' );
     }
 
+    function testEncoding()
+    {
+        $euro = "\xc2\x80";
+        $htmlString = "<html><head><title>Encodingtest</title></head><body>$euro</body></html>";
+        $html = \arc\html::parse($htmlString, "utf-8");
+        $euroEl = $html->body->nodeValue;
+        $this->assertEquals( $euro, (string) $euroEl );
+    }
+
 }
