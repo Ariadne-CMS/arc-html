@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
- 
-class TestHTML extends PHPUnit_Framework_TestCase 
+
+class TestHTML extends PHPUnit_Framework_TestCase
 {
 
 	var $html1 = '<html>
@@ -25,7 +25,7 @@ class TestHTML extends PHPUnit_Framework_TestCase
 </html>
 ';
 
-    function testHTMLBasics() 
+    function testHTMLBasics()
     {
         $doctype = \arc\html::doctype();
         $this->assertEquals( (string) $doctype, '<!doctype html>' );
@@ -33,7 +33,7 @@ class TestHTML extends PHPUnit_Framework_TestCase
         $this->assertEquals( (string) $comment, '<!-- A comment -->' );
     }
 
-    function testHTMLWriter() 
+    function testHTMLWriter()
     {
         $html = \arc\html::ul( [ 'class' => 'menu' ],
             \arc\html::li('menu 1 ',
@@ -41,14 +41,14 @@ class TestHTML extends PHPUnit_Framework_TestCase
             )
             ->li('menu 2')
         );
-        $this->assertEquals( 
+        $this->assertEquals(
             "<ul class=\"menu\">\r\n\t<li>\r\n\t\tmenu 1 <input type=\"radio\" checked>\r\n\t</li>"
             ."\r\n\t<li>menu 2</li>\r\n</ul>",
             ''.$html
         );
     }
 
-    function testHTMLParsing() 
+    function testHTMLParsing()
     {
         $html = \arc\html::parse( $this->html1 );
         $error = null;
@@ -60,7 +60,7 @@ class TestHTML extends PHPUnit_Framework_TestCase
         $this->assertTrue( $html->head->title->nodeValue == 'Example' );
     }
 
-    function testHTMLFind() 
+    function testHTMLFind()
     {
         $html = \arc\html::parse( $this->html1 );
         $title = $html->find('head title')[0];
@@ -76,7 +76,7 @@ class TestHTML extends PHPUnit_Framework_TestCase
 
     function testEncoding()
     {
-        $euro = "\xc2\x80";
+        $euro = "\uc280";
         $htmlString = "<html><head><title>Encodingtest</title></head><body>$euro</body></html>";
         $html = \arc\html::parse($htmlString, "utf-8");
         $euroEl = $html->body->nodeValue;
