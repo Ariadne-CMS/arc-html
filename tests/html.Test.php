@@ -36,9 +36,9 @@ EOS;
     function testHTMLBasics()
     {
         $doctype = \arc\html::doctype();
-        $this->assertEquals( (string) $doctype, '<!doctype html>' );
+        $this->assertEquals('<!doctype html>' ,  (string) $doctype);
         $comment = \arc\html::comment('A comment');
-        $this->assertEquals( (string) $comment, '<!-- A comment -->' );
+        $this->assertEquals('<!-- A comment -->' ,  (string) $comment);
     }
 
     function testHTMLWriter()
@@ -62,7 +62,7 @@ EOS;
         $error = null;
         $htmlString = ''.$html;
         $html2 = \arc\html::parse( $htmlString );
-        $this->assertEquals( $html->head->title, '<title>Example</title>' );
+        $this->assertEquals('<title>Example</title>' ,  $html->head->title);
         $this->assertTrue( $html->head->title->nodeValue == 'Example' );
         $this->assertEquals( $html->head->title.'', $html2->head->title.'' );
         $this->assertTrue( $html->head->title->nodeValue == 'Example' );
@@ -72,26 +72,26 @@ EOS;
     {
         $html = \arc\html::parse( $this->html1 );
         $title = $html->find('head title')[0];
-        $this->assertEquals( $title->nodeValue, 'Example' );
+        $this->assertEquals('Example' ,  $title->nodeValue);
     }
 
     function testDomMethods()
     {
         $html = \arc\html::parse( $this->html1 );
         $title = $html->getElementsByTagName('title')[0];
-        $this->assertEquals( $title->nodeValue, 'Example' );
+        $this->assertEquals('Example' ,  $title->nodeValue);
     }
 
 	function testEncoding() {
 		$html = \arc\html::parse( $this->html1, 'UTF-8' );
 		$elm = $html->find('#utf8')[0];
-		$this->assertEquals($this->i18n, $elm->nodeValue );
+		$this->assertTrue($elm->nodeValue == $this->i18n, "utf-8 text is not the same");
 	}
 
 	function testEntities() {
 		$html = \arc\html::parse( $this->html1, 'UTF-8' );
 		$elm = $html->find('#entities')[0];
-		$this->assertEquals($this->entities, $elm->nodeValue );
+		$this->assertTrue($elm->nodeValue == $this->entities, "Entities are no longer encoded");
 	}
 
 }
