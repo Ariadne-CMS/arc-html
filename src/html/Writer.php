@@ -1,7 +1,18 @@
 <?php
-
+/*
+ * This file is part of the Ariadne Component Library.
+ *
+ * (c) Muze <info@muze.nl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace arc\html;
 
+/**
+ * This class allows you to create valid and nicely indented HTML strings
+ * Any method not explicitly defined is interpreted as a new HTML element to create.
+ */
 class Writer {
 
     public $indent = "\t";
@@ -22,51 +33,5 @@ class Writer {
         return call_user_func_array( [ new \arc\html\NodeList( [], $this), $name], $args );
     }
 
-    static public function name( $name ) 
-    {
-        return strtolower( \arc\xml::name( $name ) );
-    }
-
-    static public function value( $value ) 
-    {
-        if ( is_array( $value ) ) {
-            $content = array_reduce( $value, function( $result, $value ) {
-                return $result . ' ' . self::value( $value );
-            } );
-        } else if ( is_bool( $value ) ) {
-            $content = $value ? 'true' : 'false';
-        } else {
-            $content = htmlspecialchars( (string) $value, ENT_QUOTES, 'UTF-8' );
-        }
-        return $content;
-    }
-
-    static public function attribute( $name, $value )
-    {
-        if ($name === $value) {
-            return ' ' . self::name( $name );
-        } else if (is_numeric( $name )) {
-            return ' ' . self::name( $value );
-        } else {
-            return \arc\xml::attribute( $name, $value );
-        }
-    }
-
-    static public function comment( $content )
-    {
-        return \arc\xml::comment( $content );
-    }
-
-    static public function doctype( $version='html5' )
-    {
-        $doctypes = [
-            'html5'        => '<!doctype html>',
-            'html4'        => '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">',
-            'transitional' => '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">',
-            'frameset'     => '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">',
-            'xhtml'        => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'
-        ];
-        return isset( $doctypes[$version] ) ? $doctypes[$version] : $doctypes['html5'];
-    }
 }
 
