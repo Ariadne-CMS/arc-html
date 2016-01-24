@@ -81,6 +81,14 @@ class TestHTML extends PHPUnit_Framework_TestCase
         $html = \arc\html::parse($htmlString, "utf-8");
         $euroEl = $html->body->nodeValue;
         $this->assertEquals( $euro, (string) $euroEl );
+        $htmlString = "<html><body>$euro</body></html>";
+        $html = \arc\html::parse($htmlString, "utf-8");
+        $euroEl = $html->body->nodeValue;
+        $this->assertEquals( $euro, (string) $euroEl );
+        $htmlString = "<ul><li>$euro</li></ul>";
+        $html = \arc\html::parse($htmlString, "utf-8");
+        $euroEl = $html->ul->li->nodeValue;
+        $this->assertEquals( $euro, (string) $euroEl );
     }
 
 }

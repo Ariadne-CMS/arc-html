@@ -107,7 +107,7 @@ Parsing fragments
 The arc\html parser also accepts partial HTML content. It doesn't require a single root element. 
 
 ```php5
-    $hmlString = <<< EOF
+    $htmlString = <<< EOF
 <li>
 	<a href="anitem/">An item</a>
 </li>
@@ -115,11 +115,28 @@ The arc\html parser also accepts partial HTML content. It doesn't require a sing
 	<a href="anotheritem/">Another item</a>
 </li>
 EOF;
-	$hml = \arc\html::parse($htmlString);
-	$links = $xml->find('a');
+	$html = \arc\html::parse($htmlString);
+	$links = $html->find('a');
 ```
 
 And when you convert the html back to a string, it will still be a partial HTML fragment.
+
+If you parse a single HTML tag, other than `<html>`, you must still reference this element to access it:
+
+```php5
+    $htmlString = <<< EOF
+<ul>
+	<li>
+		<a href="anitem/">An item</a>
+	</li>
+	<li>
+		<a href="anotheritem/">Another item</a>
+	</li>
+</ul>
+EOF;
+	$html = \arc\html::parse($htmlString);
+	$ul = $html->ul;
+```
 
 
 Why use this instead of DOMDocument or SimpleXML?
