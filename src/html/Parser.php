@@ -2,13 +2,13 @@
 
 namespace arc\html;
 
-class Parser 
+class Parser
 {
     public $options = [
         'libxml_options' => 0
     ];
 
-    public function __construct( $options = array() ) 
+    public function __construct( $options = array() )
     {
         $optionList = [ 'libxml_options' ];
         foreach( $options as $option => $optionValue ) {
@@ -18,7 +18,7 @@ class Parser
         }
     }
 
-    public function parse( $html, $encoding = null ) 
+    public function parse( $html, $encoding = null )
     {
         if ( !$html ) {
             return \arc\html\Proxy( null );
@@ -29,12 +29,12 @@ class Parser
         $html = (string) $html;
         if ( stripos($html, '<html>')!==false ) {
             return $this->parseFull( $html, $encoding );
-        } else {        
+        } else {
             return $this->parsePartial( $html, $encoding );
         }
     }
 
-    private function parsePartial( $html, $encoding ) 
+    private function parsePartial( $html, $encoding )
     {
         $result = $this->parseFull( '<div id="ArcPartialHTML">'.$html.'</div>', $encoding );
         if ( $result ) {
@@ -76,7 +76,7 @@ class Parser
         $meta->parentNode->removeChild($meta);
     }
 
-    private function parseFull( $html, $encoding ) 
+    private function parseFull( $html, $encoding )
     {
         $dom = new \DomDocument();
         libxml_disable_entity_loader(); // prevents XXE attacks
