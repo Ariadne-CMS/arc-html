@@ -34,8 +34,8 @@ Finally the parser also adds the ability to use basic CSS selectors to find elem
 
 ```php5
 	$html = \arc\html::parse($htmlString);
-	$title = $html->html->head->title->nodeValue; // SimpleXMLElement 'Example site'
-	$titleTag = $html->html->head->title; // <title>Example site</title>
+	$title = $html->head->title->nodeValue; // SimpleXMLElement 'Example site'
+	$titleTag = $html->head->title; // <title>Example site</title>
 ```
 
 CSS selectors
@@ -78,14 +78,14 @@ SimpleXML
 The parsed HTML behaves almost identical to a SimpleXMLElement, with the exceptions noted above. So you can access attributes just like SimpleXMLElement allows:
 
 ```php5
-	$class = $html->html->body['class'];
-	$class = $html->html->body->attributes('version');
+	$class = $html->body['class'];
+	$class = $html->body->attributes('version');
 ```
 
 You can walk through the node tree:
 
 ```php5
-	$title = $html->html->head->title;
+	$title = $html->head->title;
 ```
 
 Any method or property available in SimpleXMLElement is included in \arc\html parsed data.
@@ -97,7 +97,7 @@ DOMElement
 In addition to SimpleXMLElement methods, you can also call any method and most properties available in DOMElement.
 
 ```php5
-	$class = $html->html->body->getAttributes('class');
+	$class = $html->body->getAttributes('class');
 	$title = current($html->getElementsByTagName('title'));
 ```
 
