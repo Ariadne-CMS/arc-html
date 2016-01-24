@@ -18,7 +18,7 @@ class Writer {
     public $indent = "\t";
     public $newLine = "\r\n";
 
-    public function __construct( $options = [] ) 
+    public function __construct( $options = [] )
     {
         $optionList = ['indent','newLine'];
         foreach( $options as $option => $optionValue ) {
@@ -28,7 +28,7 @@ class Writer {
         }
     }
 
-    public function __call( $name, $args ) 
+    public function __call( $name, $args )
     {
         return call_user_func_array( [ new \arc\html\NodeList( [], $this), $name], $args );
     }

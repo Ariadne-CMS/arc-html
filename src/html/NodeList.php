@@ -8,8 +8,8 @@ class NodeList extends \ArrayObject {
     }
 
     protected function canHaveContent( $tagName ) {
-        $cantHaveContent = [ 
-            'area', 'base', 'basefont', 'br', 
+        $cantHaveContent = [
+            'area', 'base', 'basefont', 'br',
             'col', 'frame', 'hr', 'img', 'input',
             'isindex', 'link', 'meta', 'param'
         ];
@@ -29,7 +29,7 @@ class NodeList extends \ArrayObject {
         return $el;
     }
 
-    protected function getAttributes( $attributes ) 
+    protected function getAttributes( $attributes )
     {
         $result = '';
         if (count( $attributes )) {
