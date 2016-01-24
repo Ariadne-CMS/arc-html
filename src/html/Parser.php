@@ -27,7 +27,7 @@ class Parser
             return $html;
         }
         $html = (string) $html;
-        if ( stripos($html, '<html>')!==false ) {
+        if ( stripos($html, '<body>')!==false ) {
             return $this->parseFull( $html, $encoding );
         } else {
             return $this->parsePartial( $html, $encoding );
@@ -36,9 +36,10 @@ class Parser
 
     private function parsePartial( $html, $encoding )
     {
-        $result = $this->parseFull( '<div id="ArcPartialHTML">'.$html.'</div>', $encoding );
+        $result = $this->parseFull( '<body id="ArcPartialHTML">'.$html.'</body>', $encoding );
         if ( $result ) {
             $result = new \arc\html\Proxy( $result->find('#ArcPartialHTML')[0]->children(), $this );
+//            $result = new \arc\html\Proxy( $result->children(), $this );
         } else {
             throw new \arc\Exception('parse error');
         }
@@ -62,7 +63,7 @@ class Parser
         $meta = '<meta id="ArcTempEncoding" http-equiv="content-type" content="text/html; charset="'.  htmlspecialchars($encoding) .'">';
         if ( preg_match('/<head([^>]*)>/i', $html) ) {
             $html = preg_replace('/<head([^>]*)>/i', '<head\\1>'.$meta, $html);
-        } else if ( preg_match('/<body([^>]*)>/i') ) {
+        } else if ( preg_match('/<body([^>]*)>/i', $html) ) {
             $html = preg_replace('/<body([^>]*)>/i', '<head>'.$meta.'</head><body\\1>', $html);
         } else {
             $html = $meta.$html;
