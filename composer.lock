@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "651f9e76a5bafa547d29095ca520f334",
-    "content-hash": "9b3272e94c9f9f484e5f6ed2ede10d3b",
+    "hash": "dd51436e353feba0e889c5212399cdb0",
+    "content-hash": "5c3539e0ea7012f37b4d491aea9af9e8",
     "packages": [
         {
             "name": "arc/base",
@@ -50,16 +50,16 @@
         },
         {
             "name": "arc/xml",
-            "version": "2.1",
+            "version": "2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ariadne-CMS/arc-xml.git",
-                "reference": "2edd850288e2787096a594c90a1519966a9f31e1"
+                "reference": "fdf7803a5f8511fc1520dd2b4f67de015119c551"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ariadne-CMS/arc-xml/zipball/2edd850288e2787096a594c90a1519966a9f31e1",
-                "reference": "2edd850288e2787096a594c90a1519966a9f31e1",
+                "url": "https://api.github.com/repos/Ariadne-CMS/arc-xml/zipball/fdf7803a5f8511fc1520dd2b4f67de015119c551",
+                "reference": "fdf7803a5f8511fc1520dd2b4f67de015119c551",
                 "shasum": ""
             },
             "require": {
@@ -91,7 +91,7 @@
                 "component",
                 "components"
             ],
-            "time": "2016-01-23 21:32:40"
+            "time": "2016-01-24 14:20:37"
         }
     ],
     "packages-dev": [
