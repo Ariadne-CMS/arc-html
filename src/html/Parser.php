@@ -39,7 +39,6 @@ class Parser
         $result = $this->parseFull( '<body id="ArcPartialHTML">'.$html.'</body>', $encoding );
         if ( $result ) {
             $result = new \arc\html\Proxy( $result->find('#ArcPartialHTML')[0]->children(), $this );
-//            $result = new \arc\html\Proxy( $result->children(), $this );
         } else {
             throw new \arc\Exception('parse error');
         }
