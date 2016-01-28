@@ -39,9 +39,8 @@ class Parser
         $result = $this->parseFull( '<body id="ArcPartialHTML">'.$html.'</body>', $encoding );
         if ( $result ) {
             $result = new \arc\html\Proxy( $result->find('#ArcPartialHTML')[0]->children(), $this );
-//            $result = new \arc\html\Proxy( $result->children(), $this );
         } else {
-            throw new \arc\Exception('parse error');
+            throw new \arc\UnknownError('Could not parse html.', \arc\exceptions::ILLEGAL_ARGUMENT );
         }
         return $result;
     }
@@ -55,7 +54,7 @@ class Parser
             foreach ( $errors as $error ) {
                 $message .= "\nline: ".$error->line."; column: ".$error->column."; ".$error->message;
             }
-            throw new \arc\Exception( $message, \arc\exceptions::ILLEGAL_ARGUMENT );
+            throw new \arc\UnknownError( $message, \arc\exceptions::ILLEGAL_ARGUMENT );
     }
 
     private function insertEncoding($html, $encoding)
