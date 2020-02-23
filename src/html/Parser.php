@@ -70,7 +70,7 @@ class Parser
         return $html;
     }
 
-    private function removeEncoding( $dom, $encoding)
+    private function removeEncoding( $dom )
     {
         $meta = $dom->getElementById('ArcTempEncoding');
         $meta->parentNode->removeChild($meta);
@@ -88,7 +88,7 @@ class Parser
             $this->throwError($prevErrorSetting);
         }
         if ( $encoding ) {
-            $this->removeEncoding($dom, $encoding);
+            $this->removeEncoding( $dom );
         }
         libxml_use_internal_errors( $prevErrorSetting );
         return new \arc\html\Proxy( simplexml_import_dom( $dom ), $this );

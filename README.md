@@ -34,8 +34,8 @@ Finally the parser also adds the ability to use basic CSS selectors to find elem
 
 ```php
 	$html = \arc\html::parse($htmlString);
-	$title = $html->html->head->title->nodeValue; // SimpleXMLElement 'Example site'
-	$titleTag = $html->html->head->title; // <title>Example site</title>
+	$title = $html->head->title->nodeValue; // SimpleXMLElement 'Example site'
+	$titleTag = $html->head->title; // <title>Example site</title>
 ```
 
 CSS selectors
