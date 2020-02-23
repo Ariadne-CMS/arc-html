@@ -18,8 +18,7 @@ When converting a node to a string, \arc\html will return the full html string, 
 
 Finally the parser also adds the ability to use basic CSS selectors to find elements in the HTML.
 
-```php5
-<?php
+```php
 	use \arc\html as h;
 	$htmlString = h::doctype()
 	 .h::html(
@@ -33,7 +32,7 @@ Finally the parser also adds the ability to use basic CSS selectors to find elem
 	 );
 ```
 
-```php5
+```php
 	$html = \arc\html::parse($htmlString);
 	$title = $html->html->head->title->nodeValue; // SimpleXMLElement 'Example site'
 	$titleTag = $html->html->head->title; // <title>Example site</title>
@@ -42,7 +41,7 @@ Finally the parser also adds the ability to use basic CSS selectors to find elem
 CSS selectors
 -------------
 
-```php5
+```php
 	$title = current($html->find('title'));
 ```
 
@@ -78,14 +77,14 @@ SimpleXML
 
 The parsed HTML behaves almost identical to a SimpleXMLElement, with the exceptions noted above. So you can access attributes just like SimpleXMLElement allows:
 
-```php5
+```php
 	$class = $html->html->body['class'];
 	$class = $html->html->body->attributes('version');
 ```
 
 You can walk through the node tree:
 
-```php5
+```php
 	$title = $html->html->head->title;
 ```
 
@@ -97,7 +96,7 @@ DOMElement
 
 In addition to SimpleXMLElement methods, you can also call any method and most properties available in DOMElement.
 
-```php5
+```php
 	$class = $html->html->body->getAttributes('class');
 	$title = current($html->getElementsByTagName('title'));
 ```
@@ -107,7 +106,7 @@ Parsing fragments
 
 The arc\html parser also accepts partial HTML content. It doesn't require a single root element. 
 
-```php5
+```php
     $htmlString = <<< EOF
 <li>
 	<a href="anitem/">An item</a>
@@ -124,7 +123,7 @@ And when you convert the html back to a string, it will still be a partial HTML 
 
 If you parse a single HTML tag, other than `<html>`, you must still reference this element to access it:
 
-```php5
+```php
     $htmlString = <<< EOF
 <ul>
 	<li>
